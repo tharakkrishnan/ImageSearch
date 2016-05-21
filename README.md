@@ -18,9 +18,11 @@ The directory ImageSearch/modified_images contain images that are modified in va
 ### Implementation
 - ingest.py fetches all the images in the universe to a folder under /tmp/ingest
 - Next we extract scores(keypoints, descriptors) using SIFT for all files in /tmp/ingest using get_scores()
-- Similarly we extract scores for the modified images under ../modified_images using get_scores()
-- In a nested loop we iterate through the scores for each modified image comparing with those of an image from the universe using score_match(). score_match() returns the number of good matches. By keeping track of the maximum score we can obtain the best match in the universe for the modified image.
-- 
+- Similarly we extract scores for the modified images under ../modified\_images using get\_scores()
+- In a nested loop we iterate through the scores for each modified image comparing with those of an image from the universe using score\_match() which returns the number of good matches. 
+- By keeping track of the maximum score we can obtain the best match in the universe for the modified image.
+
+
 ### Future implementations for robustness and speed
 - The current implementation can be easily optimized for speed by parallelizing a number of operations.
 - ingest.py currently fetches a list of urls, and then downloads images from each url one by one. The downloads are I/O bound independent processes. It is possible to replicate ingest.py into 10 workers, each of which fetch, 1/10th of the urls and download images. The workers will also calculate the scores and place them in a distributed NoSQL data base. The images can be discarded after the scores are calculated to reduce memory overhead for large universes.
