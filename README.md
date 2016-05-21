@@ -15,3 +15,9 @@ The directory ImageSearch/modified_images contain images that are modified in va
 - We then compare the descriptors of the modified image using a nearest neighbor match to and score it against all the descriptors in the universe
 - The image in the universe with the highest score is the best match for the modified image.
 
+### Implementation
+- ingest.py fetches all the images in the universe to a folder under /tmp/ingest
+- Next we extract scores(keypoints, descriptors) using SIFT for all files in /tmp/ingest using get_scores()
+- Similarly we extract scores for the modified images under ../modified_images using get_scores()
+- In a nested loop we iterate through the scores for each modified image comparing with those of an image from the universe using score_match(). score_match() returns the number of good matches. By keeping track of the maximum score we can obtain the best match in the universe for the modified image.
+
