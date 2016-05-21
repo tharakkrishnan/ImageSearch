@@ -14,8 +14,8 @@ global MATCHER
 
 def get_score(filename):
 	try:
-		img = cv2.imread(filename,0) 
-		kp, des = TRANSFORM.detectAndCompute(img,None)
+		img = cv2.imread(filename,0)
+		kp, des = TRANSFORM.detectAndCompute(img, None)
 		return (kp,des)
 	except:
 		print "ERROR: Unable to process file {} skipping...".format(filename)
@@ -76,7 +76,7 @@ if __name__=="__main__":
 		cnt += 1
 		print "Matching {}/{}: {}".format(cnt, len(test_scores), test_k)
 		for universe_k, universe_v in universe_scores.iteritems():
-			score = match_scores(universe_v[1], test_v[1])
+			score = match_scores(test_v[1], universe_v[1])
 			if score > max_score:
 				match = (test_k, universe_k, max_score)
 				max_score = score
