@@ -44,10 +44,14 @@ def match_scores(des1, des2):
 	matches = MATCHER.knnMatch(des1,des2, k=2)
 	# Apply ratio test
 	good = []
-	for m,n in matches:
-    		if m.distance < 0.75*n.distance:
-        		good.append([m])
-	return len(good)
+	try:
+		for m,n in matches:
+    			if m.distance < 0.75*n.distance:
+        			good.append([m])
+		return len(good)
+	except Exception as e:
+		print "Error occured {}, {}".format(type(e).__name__, e.args)
+		return 0
 
 
 
