@@ -23,7 +23,7 @@ The directory ImageSearch/modified_images contain images that are modified in va
 - By keeping track of the maximum score we can obtain the best match in the universe for the modified image.
 
 ### Results
-#### Initial run with SIFT and Brute force with K-nearest neighbor set to 2 gave us a recognition accuracy of 88%
+#### Initial run with SIFT and Brute force with K-nearest neighbor (set to 2 neighbors) gave us a recognition accuracy of 88%
 
 
 ### Future implementations for robustness and speed
