@@ -1,7 +1,7 @@
 # Image search
 
 ### Installation
-- To try it out, clone the repository. Make sure to have opencv 3.0.0 installed. 
+- To try it out, clone the repository. Make sure to have opencv 3.0.0 installed.You would also need opencv_contrip installed that contains the patented SIFT and SURF algorithms that are used for feature matching. 
 - cd src
 - ./run.sh
 
