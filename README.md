@@ -1,7 +1,7 @@
 # Image search
 
 ### Installation
-- To try it out, clone the repository. Make sure to have opencv 3.0.0 installed.You would also need opencv_contrip installed that contains the patented SIFT and SURF algorithms that are used for feature matching. 
+- To try it out, clone the repository. Make sure to have opencv 3.0.0 installed.You would also need opencv_contrib installed. It contains the patented SIFT and SURF algorithms that are used for feature matching. 
 - cd src
 - ./run.sh
 
@@ -28,7 +28,7 @@ The directory ImageSearch/modified_images contain images that are modified in va
 
 ### Future implementations for robustness and speed
 - The current implementation can be easily optimized for speed by parallelizing a number of operations.
-- ingest.py currently fetches a list of urls, and then downloads images from each url one by one. The downloads are I/O bound independent processes. It is possible to replicate ingest.py into 10 workers, each of which fetch, 1/10th of the urls and download images. The workers will also calculate the scores and place them in a distributed NoSQL data base for fast retreival. The images can be discarded after the scores are calculated to reduce memory overhead for large universes.
+- ingest.py currently fetches a list of urls, and then downloads images from each url one by one. The downloads are I/O bound independent processes. It is possible to replicate ingest.py into 10 workers, each of which fetch, 1/10th of the urls and download images. The workers will also calculate the scores and place them in a distributed NoSQL data base or even amazon SQS for fast retreival. The images can be discarded after the scores are calculated to reduce memory overhead for large universes.
 - process.py which obtains the match by comparing the modified image score with the scores of the universe can also be optimzed using a number of workers that split up the universe space and consolidate results at the end. This map-reduce process can potentially be implemented on a hadoop cluster.
 - Further we can use a clustering algorithm to divide the universe into buckets that are similar in order to improve the speed of the matching process. 
 - There maybe better feature extraction and image matching algorithms like SURF or ORB which can be used. Perhaps they can all be used simultaneously to improve prediction accuracy. 
