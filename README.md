@@ -22,12 +22,16 @@ The directory ImageSearch/modified_images contain images that are modified in va
 - In a nested loop we iterate through the scores for each modified image comparing with those of an image from the universe using score\_match() which returns the number of good matches. 
 - By keeping track of the maximum score we can obtain the best match in the universe for the modified image.
 
+### Results
+#### Initial run with SIFT and Brute force with K-nearest neighbor set to 2 gave us a recognition accuracy of 88%
+
 
 ### Future implementations for robustness and speed
 - The current implementation can be easily optimized for speed by parallelizing a number of operations.
 - ingest.py currently fetches a list of urls, and then downloads images from each url one by one. The downloads are I/O bound independent processes. It is possible to replicate ingest.py into 10 workers, each of which fetch, 1/10th of the urls and download images. The workers will also calculate the scores and place them in a distributed NoSQL data base for fast retreival. The images can be discarded after the scores are calculated to reduce memory overhead for large universes.
 - process.py which obtains the match by comparing the modified image score with the scores of the universe can also be optimzed using a number of workers that split up the universe space and consolidate results at the end. This map-reduce process can potentially be implemented on a hadoop cluster.
 - Further we can use a clustering algorithm to divide the universe into buckets that are similar in order to improve the speed of the matching process. 
-- There maybe better feature extraction and image matching algorithms like SURF or ORB which can be used. 
+- There maybe better feature extraction and image matching algorithms like SURF or ORB which can be used. Perhaps they can all be used simultaneously to improve prediction accuracy. 
+- Need to examine failed cases to figure out why they failed.
 
 
