@@ -9,9 +9,6 @@ import os
 DIR_TEST="../modified_images/"
 DIR_UNIVERSE="/tmp/ingest"
 
-global TRANSFORM
-global MATCHER
-
 def get_score(filename):
 	try:
 		img = cv2.imread(filename,0)
@@ -58,8 +55,8 @@ def match_scores(des1, des2):
 if __name__=="__main__":
 	print cv2.__version__
 
-	TRANSFORM = cv2.xfeatures2d.SIFT_create()
-	MATCHER = cv2.BFMatcher()
+	global TRANSFORM = cv2.xfeatures2d.SIFT_create()
+	global MATCHER = cv2.BFMatcher()
 	
 	test_scores = {}
 	test_scores = get_scores(get_files_in_dir(DIR_TEST))
